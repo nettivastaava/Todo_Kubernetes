@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: todo
+  name: todo-project-front-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-project-front-dep
+  template:
+    metadata:
+      labels:
+        app: todo-project-front-dep
+    spec:
+      containers:
+        - name: kube-todo-front
+          image: PROJECT/IMAGE

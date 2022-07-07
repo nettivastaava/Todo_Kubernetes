@@ -1,0 +1,7 @@
+POST http://localhost:8081/api/todos
+content-type: application/json
+
+
+{
+    "text": "Osta karkkia :3"
+}

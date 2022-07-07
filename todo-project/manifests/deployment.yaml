@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: todo
+  name: todo-project-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-project-dep
+  template:
+    metadata:
+      labels:
+        app: todo-project-dep
+    spec:
+      volumes:
+        - name: shared-files
+          persistentVolumeClaim:
+            claimName: file-claim
+      containers:
+        - name: kube-todo-project
+          image: PROJECT/IMAGE
+          volumeMounts:
+            - name: shared-files
+              mountPath: usr/src/app/files 
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pg-apkey
+                  key: POSTGRES_PASSWORD
