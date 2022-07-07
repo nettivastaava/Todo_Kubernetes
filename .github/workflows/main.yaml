@@ -54,6 +54,7 @@ jobs:
 
       - name: Deploy back end
         run: |-
+          kubectl create namespace todo
           kustomize edit set image gcr.io/PROJECT_ID/BACK_IMAGE=gcr.io/$PROJECT_ID/$BACK_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
           kustomize build . | kubectl apply -f - --validate=false 
           kubectl rollout status deployment $BACK_IMAGE
