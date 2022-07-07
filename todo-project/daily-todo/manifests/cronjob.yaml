@@ -1,7 +1,6 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  namespace: todo
   name: kube-todo-cronjob
 spec:
   schedule: "0 0 * * *"
