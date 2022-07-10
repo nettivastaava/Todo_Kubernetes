@@ -54,14 +54,14 @@ jobs:
 
       - name: Deploy back end
         run: |-
-          kustomize edit set image gcr.io/PROJECT_ID/BACK_IMAGE=gcr.io/$PROJECT_ID/$BACK_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize edit set image gcr.io/PROJECT_ID/IMAGE=gcr.io/$PROJECT_ID/$BACK_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
           kustomize build . | kubectl apply -f - --validate=false 
           kubectl rollout status deployment $BACK_IMAGE
           kubectl get services -o wide
 
       - name: Deploy front end
         run: |-
-          kustomize edit set image gcr.io/PROJECT_ID/FRONT_IMAGE=gcr.io/$PROJECT_ID/$FRONT_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize edit set image gcr.io/PROJECT_ID/IMAGE=gcr.io/$PROJECT_ID/$FRONT_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
           kustomize build . | kubectl apply -f -
           kubectl rollout status deployment $FRONT_IMAGE
           kubectl get services -o wide
