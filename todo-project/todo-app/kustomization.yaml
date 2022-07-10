@@ -1,13 +1,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - todo-project/manifests/deployment.yaml
-  - todo-project/manifests/service.yaml
-  - todo-project/manifests/ingress.yaml
-  - todo-project/manifests/persistentvolume.yaml
-  - todo-project/manifests/persistentvolumeclaim.yaml
-  - todo-project/manifests/secret.enc.yaml
-  - todo-project/manifests/statefulset.yaml
+  - manifests/deployment.yaml
+  - manifests/service.yaml
+  - manifests/ingress.yaml
+  - manifests/persistentvolume.yaml
+  - manifests/persistentvolumeclaim.yaml
+  - manifests/secret.enc.yaml
+  - manifests/statefulset.yaml
 images:
   - name: PROJECT/IMAGE
     newName: nettivastaava/kube-todo-project:2.10.1
