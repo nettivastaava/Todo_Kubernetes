@@ -9,7 +9,7 @@ env:
   GKE_ZONE: europe-north1-b
 
 jobs:
-  delete_branch:
+  delete-branch:
     name: Delete deployment
     runs-on: ubuntu-latest
     step:
