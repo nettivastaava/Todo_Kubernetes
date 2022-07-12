@@ -1,0 +1,33 @@
+name: Delete branch
+
+on: 
+  delete:
+    branches-ignore: master
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_ZONE: europe-north1-b
+
+jobs:
+  delete_branch:
+    name: Delete deployment
+    runs-on: ubuntu-latest
+    step:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@main
+        with:
+          project_id: ${{ secrets.GKE_PROJECT }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+
+      - run: gcloud --quiet auth configure-docker
+
+      - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+    - name: Delete namespace
+      run: |-
+        kubectl delete namespace ${{ github.event.ref }}
+
+
