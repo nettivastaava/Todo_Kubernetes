@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: kube-todo-front
-          image: PROJECT/IMAGE
+          image: nettivastaava/kube-todo-front:2.08.1

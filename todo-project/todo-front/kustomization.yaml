@@ -3,6 +3,3 @@ kind: Kustomization
 resources:
   - manifests/deployment.yaml
   - manifests/service.yaml
-images:
-  - name: PROJECT/IMAGE
-    newName: nettivastaava/kube-todo-front:2.08.1

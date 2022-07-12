@@ -8,7 +8,4 @@ resources:
   - manifests/persistentvolumeclaim.yaml
   - manifests/secret.enc.yaml
   - manifests/statefulset.yaml
-images:
-  - name: PROJECT/IMAGE
-    newName: nettivastaava/kube-todo-project:2.10.1
 
