@@ -46,6 +46,7 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data
+              subPath: postgres
   volumeClaimTemplates:
     - metadata:
         name: data
