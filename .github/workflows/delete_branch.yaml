@@ -9,10 +9,11 @@ env:
   GKE_ZONE: europe-north1-b
 
 jobs:
-  delete-branch:
+  delete:
     name: Delete deployment
     runs-on: ubuntu-latest
-    step:
+
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Cloud SDK
