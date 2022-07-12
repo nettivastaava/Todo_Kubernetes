@@ -1,8 +1,8 @@
-name: Delete branch
+name: Delete deployment
 
-on: 
+on:
   delete:
-    branches-ignore: 
+    branches-ignore:
       - master
 
 env:
@@ -12,7 +12,6 @@ env:
 jobs:
   delete:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,8 +26,6 @@ jobs:
 
       - run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
 
-    - name: Delete namespace
-      run: |-
-        kubectl delete namespace ${{ github.event.ref }}
-
-
+      - name: Delete namespace
+        run: |-
+          kubectl delete namespace ${{ github.event.ref }}
