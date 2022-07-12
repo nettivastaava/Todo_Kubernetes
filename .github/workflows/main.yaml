@@ -52,15 +52,6 @@ jobs:
       - name: Set up Kustomize
         uses: imranismail/setup-kustomize@v1
 
-
-      - name: Deploy front end
-        run: |-
-          cd todo-project/todo-front
-          kustomize edit set image gcr.io/PROJECT_ID/IMAGE=gcr.io/$PROJECT_ID/$FRONT_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
-          kustomize build . | kubectl apply -f -
-          kubectl rollout status deployment $FRONT_IMAGE
-          kubectl get services -o wide
-
       - name: Deploy back end
         run: |-
           kubectl create namespace ${GITHUB_REF#refs/heads/} || true
@@ -70,5 +61,14 @@ jobs:
           kustomize build . | kubectl apply -f - --validate=false 
           kubectl rollout status deployment $BACK_IMAGE
           kubectl get services -o wide
+
+      - name: Deploy front end
+        run: |-
+          cd todo-project/todo-front
+          kustomize edit set image gcr.io/PROJECT_ID/IMAGE=gcr.io/$PROJECT_ID/$FRONT_IMAGE:${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+          kustomize build . | kubectl apply -f -
+          kubectl rollout status deployment $FRONT_IMAGE
+          kubectl get services -o wide
+
 
 
