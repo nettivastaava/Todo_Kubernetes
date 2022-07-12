@@ -2,10 +2,11 @@ name: Delete branch
 
 on: 
   delete:
-    branches-ignore: master
+    branches-ignore: 
+      - master
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: todo-cluster
   GKE_ZONE: europe-north1-b
 
 jobs:
