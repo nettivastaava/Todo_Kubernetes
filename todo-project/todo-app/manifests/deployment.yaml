@@ -19,6 +19,10 @@ spec:
       containers:
         - name: kube-todo-project
           image: nettivastaava/kube-todo-project:2.10.1
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "150Mi"
           volumeMounts:
             - name: shared-files
               mountPath: usr/src/app/files 
